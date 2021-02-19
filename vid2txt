@@ -1,0 +1,6 @@
+#!/bin/bash
+while :
+do
+        youtube-dl $1 -o - | ffmpeg -i - -vf fps=1 -frames:v 1 -c:v png -f image2 - | convert - -crop $2 - | tesseract - stdout >> $3
+        sleep 5 #It takes some time for the scroll itself to get new content no other reason to put this
+done
